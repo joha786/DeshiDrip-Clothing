@@ -35,6 +35,8 @@ function createOrderFromCart($userId, $paymentMethod, $transactionId)
         return 0;
     }
 
+
+    
     $total = 0;
     foreach ($items as $item) {
         if ((int) $item["quantity"] > (int) $item["stock"]) {
