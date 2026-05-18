@@ -1,9 +1,8 @@
 <?php
 require_once "header.php";
-requireLogin();
+requireCustomer();
 require_once __DIR__ . "/../model/UserModel.php";
-require_once __DIR__ . "/../model/OrderModel.php";
-
+//conflict resolved
 $user = getUserById($_SESSION["user_id"]);
 $message = "";
 
@@ -51,44 +50,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h2>Profile</h2>
 <?php if ($message != "") { ?><div class="message success"><?php echo clean($message); ?></div><?php } ?>
 
-<div class="two-col">
-    <form method="post" enctype="multipart/form-data" onsubmit="return validateProfile()">
-        <label>Name</label>
-        <input type="text" name="name" id="name" value="<?php echo clean($user["name"]); ?>">
+<p class="page-intro">Manage your customer details here. Your orders and purchase history are available on a separate page.</p>
+<a class="btn secondary" href="purchase_history.php">View Purchase History</a>
 
-        <label>Email</label>
-        <input type="email" name="email" id="email" value="<?php echo clean($user["email"]); ?>">
+<form method="post" enctype="multipart/form-data" onsubmit="return validateProfile()">
+    <label>Name</label>
+    <input type="text" name="name" id="name" value="<?php echo clean($user["name"]); ?>">
 
-        <label>Address</label>
-        <textarea name="address" id="address"><?php echo clean($user["address"]); ?></textarea>
+    <label>Email</label>
+    <input type="email" name="email" id="email" value="<?php echo clean($user["email"]); ?>">
 
-        <label>Phone</label>
-        <input type="text" name="phone" id="phone" value="<?php echo clean($user["phone"]); ?>">
+    <label>Address</label>
+    <textarea name="address" id="address"><?php echo clean($user["address"]); ?></textarea>
 
-        <label>Profile Picture</label>
-        <input type="file" name="profile_picture" accept="image/jpeg,image/png">
+    <label>Phone</label>
+    <input type="text" name="phone" id="phone" value="<?php echo clean($user["phone"]); ?>">
 
-        <label>Current Password</label>
-        <input type="password" name="current_password">
+    <label>Profile Picture</label>
+    <input type="file" name="profile_picture" accept="image/jpeg,image/png">
 
-        <label>New Password</label>
-        <input type="password" name="new_password">
+    <label>Current Password</label>
+    <input type="password" name="current_password">
 
-        <button type="submit">Update Profile</button>
-    </form>
+    <label>New Password</label>
+    <input type="password" name="new_password">
 
-    <div class="card">
-        <h3>Purchase History</h3>
-        <?php foreach (getUserOrders($_SESSION["user_id"]) as $order) { ?>
-            <p><strong>Order #<?php echo $order["id"]; ?></strong> - <?php echo clean($order["status"]); ?> - BDT <?php echo clean($order["total_amount"]); ?></p>
-            <ul>
-                <?php foreach (getOrderItems($order["id"]) as $item) { ?>
-                    <li><?php echo clean($item["name"]); ?> - Size <?php echo clean($item["selected_size"]); ?> x <?php echo clean($item["quantity"]); ?></li>
-                <?php } ?>
-            </ul>
-        <?php } ?>
-    </div>
-</div>
+    <button type="submit">Update Profile</button>
+</form>
 
 <script>
 function validateProfile() {
