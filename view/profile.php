@@ -2,7 +2,7 @@
 require_once "header.php";
 requireCustomer();
 require_once __DIR__ . "/../model/UserModel.php";
-
+//conflict resolved
 $user = getUserById($_SESSION["user_id"]);
 $message = "";
 
