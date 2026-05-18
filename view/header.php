@@ -24,6 +24,7 @@ if (isLoggedIn() && isCustomer()) {
         <?php if (isLoggedIn() && isCustomer()) { ?>
             <a href="cart.php">Cart <span id="cartCount"><?php echo $cartCount; ?></span></a>
             <a href="profile.php">Profile</a>
+            <a href="purchase_history.php">Purchase History</a>
         <?php } ?>
         <?php if (isLoggedIn() && isAdmin()) { ?>
             <a href="admin_dashboard.php">Dashboard</a>
