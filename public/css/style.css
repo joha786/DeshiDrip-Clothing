@@ -702,6 +702,22 @@ form.filters {
     color: var(--accent-dark);
 }
 
+.order-card {
+    margin-bottom: 16px;
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+
+.order-card-header h3 {
+    margin-top: 0;
+}
+
 .muted-text {
     color: var(--muted-2);
     font-weight: 800;
@@ -916,6 +932,10 @@ ul {
     button,
     .btn {
         width: 100%;
+    }
+
+    .order-card-header {
+        flex-direction: column;
     }
 
     .hero .btn,
